@@ -1,0 +1,23 @@
+{
+  "name": "@sala-funcionando/domain",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./entities/*": "./src/entities/*",
+    "./value-objects/*": "./src/value-objects/*",
+    "./ports/*": "./src/ports/*",
+    "./errors/*": "./src/errors/*",
+    "./services/*": "./src/services/*"
+  },
+  "scripts": {
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"no tests configured yet\""
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

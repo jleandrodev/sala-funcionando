@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"],
+      "@sala-funcionando/ui": ["../../packages/ui/src"],
+      "@sala-funcionando/ui/*": ["../../packages/ui/src/*"],
+      "@sala-funcionando/domain": ["../../packages/domain/src"],
+      "@sala-funcionando/domain/*": ["../../packages/domain/src/*"],
+      "@sala-funcionando/application": ["../../packages/application/src"],
+      "@sala-funcionando/application/*": ["../../packages/application/src/*"],
+      "@sala-funcionando/shared": ["../../packages/shared/src"],
+      "@sala-funcionando/shared/*": ["../../packages/shared/src/*"],
+      "@sala-funcionando/database": ["../../packages/database/src"],
+      "@sala-funcionando/database/*": ["../../packages/database/src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "sala-funcionando",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@sala-funcionando/web",
+    "build": "npm run build --workspace=@sala-funcionando/web",
+    "lint": "npm run lint --workspace=@sala-funcionando/web",
+    "dev:web": "npm run dev --workspace=@sala-funcionando/web",
+    "prisma:generate": "npm run prisma:generate --workspace=@sala-funcionando/database",
+    "prisma:migrate": "npm run prisma:migrate --workspace=@sala-funcionando/database",
+    "prisma:push": "npm run prisma:push --workspace=@sala-funcionando/database",
+    "prisma:studio": "npm run prisma:studio --workspace=@sala-funcionando/database"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
