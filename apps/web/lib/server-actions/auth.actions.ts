@@ -26,10 +26,13 @@ export async function signup(formData: FormData) {
   const name = formData.get('name') as string
   const supabase = await createClient()
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
   const { error, data } = await supabase.auth.signUp({
     email,
     password,
     options: {
+      emailRedirectTo: `${siteUrl}/auth/callback`,
       data: {
         full_name: name,
       },
