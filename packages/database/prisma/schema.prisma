@@ -11,4 +11,94 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// Modelos serão criados na sub-tarefa 1.3
+model Professor {
+  id        String   @id @default(uuid())
+  userId    String   @unique // ID do usuário no Supabase Auth
+  name      String?
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  turmas             Turma[]
+  contatosEmergencia ContatoEmergencia[]
+}
+
+model Turma {
+  id          String   @id @default(uuid())
+  professorId String
+  nome        String
+  faixaEtaria String
+  tamanho     Int
+  alunosNEE   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  professor Professor @relation(fields: [professorId], references: [id])
+  alunos    Aluno[]
+  historicos HistoricoAtendimento[]
+}
+
+model Aluno {
+  id          String   @id @default(uuid())
+  turmaId     String
+  nome        String?  // Opcional por LGPD
+  condicao    String?
+  observacoes String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  turma      Turma                  @relation(fields: [turmaId], references: [id])
+  historicos HistoricoAtendimento[]
+}
+
+model Protocolo {
+  id          String   @id @default(uuid())
+  condicao    String   // Ex: TEA, Down, AH/SD
+  subSituacao String   // Ex: Crise, Transição, Social
+  versao      Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  etapas     EtapaProtocolo[]
+  historicos HistoricoAtendimento[]
+}
+
+model EtapaProtocolo {
+  id            String   @id @default(uuid())
+  protocoloId   String
+  ordem         Int      // Sequência no fluxo
+  instrucao     String   // Ação principal
+  oQueEvitar    String?  // Dica do que não fazer
+  frasesProntas String[] // Sugestões de falas
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  protocolo Protocolo @relation(fields: [protocoloId], references: [id])
+}
+
+model HistoricoAtendimento {
+  id             String   @id @default(uuid())
+  turmaId        String
+  protocoloId    String
+  alunoId        String?
+  etapaAlcancada Int
+  helpAcionado   Boolean  @default(false)
+  data           DateTime @default(now())
+
+  turma     Turma     @relation(fields: [turmaId], references: [id])
+  protocolo Protocolo @relation(fields: [protocoloId], references: [id])
+  aluno     Aluno?    @relation(fields: [alunoId], references: [id])
+}
+
+model ContatoEmergencia {
+  id          String   @id @default(uuid())
+  professorId String
+  tipo        String   // Ex: Direção, Pedagoga, Pais
+  nome        String
+  telefone    String?
+  email       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  professor Professor @relation(fields: [professorId], references: [id])
+}

@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  transpilePackages: [
+    "@sala-funcionando/ui",
+    "@sala-funcionando/domain",
+    "@sala-funcionando/application",
+    "@sala-funcionando/database",
+    "@sala-funcionando/shared"
+  ],
 };
 
 export default nextConfig;

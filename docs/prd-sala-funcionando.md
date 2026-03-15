@@ -29,7 +29,7 @@ Professores enfrentam situações diárias como crises de alunos com TEA, salas 
 | O1 | Oferecer protocolos práticos de ação em ≤30 segundos de leitura | Tempo médio de leitura do protocolo < 30s |
 | O2 | Reduzir a insegurança do professor em situações de crise | NPS do professor > 8 |
 | O3 | Criar retenção através de uso frequente e percepção de valor | Retenção D7 > 40% |
-| O4 | Validar o modelo de assinatura com professores individuais | ≥100 assinantes pagantes em 3 meses |
+| O4 | [Post-MVP] Validar o modelo de assinatura com professores individuais | ≥100 assinantes pagantes em 3 meses |
 | O5 | Memorizar contexto de turma para personalizar sugestões | ≥60% dos usuários ativos cadastram ao menos 1 turma |
 
 ---
@@ -48,7 +48,7 @@ Professores enfrentam situações diárias como crises de alunos com TEA, salas 
 ### H4 — Memória de Sala
 > Como professor com múltiplas turmas, quero cadastrar minhas turmas (Sala A, Sala B) e que o app lembre quais protocolos funcionaram melhor para cada uma, para receber sugestões adaptadas.
 
-### H5 — Adaptação com IA
+### H5 — [Post-MVP] Adaptação com IA
 > Como professor, quero poder pedir "Adaptar para minha turma" e receber o protocolo ajustado à faixa etária, tamanho da turma e presença de alunos com necessidades especiais.
 
 ### H6 — Modo Segurança (HELP)
@@ -96,13 +96,13 @@ Professores enfrentam situações diárias como crises de alunos com TEA, salas 
 - **RF21**: O app lembra quais protocolos foram mais utilizados/efetivos por turma
 - **RF22**: As sugestões são ajustadas automaticamente com base no histórico da turma
 
-### 4.6 Adaptação com IA
+### 4.6 [Post-MVP] Adaptação com IA
 - **RF23**: Em qualquer etapa do protocolo, o professor pode tocar "Adaptar para minha turma"
 - **RF24**: A IA ajusta o protocolo considerando: faixa etária, tamanho da turma, presença de aluno com TEA/NEE, histórico da sala
 - **RF25**: A IA não gera textos longos — apenas adapta ações práticas e frases prontas
 - **RF26**: A adaptação deve retornar em ≤3 segundos
 
-### 4.7 Autenticação e Assinatura
+### 4.7 [Post-MVP] Autenticação e Assinatura
 - **RF27**: O professor deve poder criar uma conta (email/senha ou login social)
 - **RF28**: Modelo de assinatura acessível (plano mensal e anual)
 - **RF29**: Período de teste gratuito para validação
@@ -125,6 +125,8 @@ Professores enfrentam situações diárias como crises de alunos com TEA, salas 
 - ❌ App mobile nativo (futuro — será PWA ou React Native)
 - ❌ Protocolos completos para Down, Altas Habilidades, Hiperativo (estrutura pronta, conteúdo pós-MVP)
 - ❌ Integração com sistemas escolares (diário de classe, etc.)
+- ❌ **Integração com IA (removido do MVP)**
+- ❌ **Meios de Pagamento e Assinaturas (removido do MVP)**
 
 ---
 

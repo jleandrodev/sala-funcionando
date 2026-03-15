@@ -1,0 +1,6 @@
+export * from './repositories/PrismaProtocoloRepository'
+export * from './repositories/PrismaTurmaRepository'
+export * from './repositories/PrismaHistoricoRepository'
+export * from './repositories/PrismaProfessorRepository'
+export * from './adapters/MockAIAdapter'
+export * from './services/MockNotificationService'

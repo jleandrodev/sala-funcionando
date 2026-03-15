@@ -1,0 +1,74 @@
+.card {
+  background-color: var(--white, #ffffff);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-neutral-100);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  max-width: 600px;
+  width: 100%;
+}
+
+.progress {
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-500);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  color: var(--color-neutral-900);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.description {
+  font-size: var(--font-size-lg);
+  color: var(--color-neutral-700);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-500);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-2);
+  text-transform: uppercase;
+}
+
+.list {
+  padding-left: var(--spacing-5);
+  margin: 0;
+}
+
+.warningItem {
+  color: var(--color-danger-700);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-1);
+}
+
+.warningItem::marker {
+  color: var(--color-danger-500);
+}
+
+.suggestionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.suggestionBubble {
+  background-color: var(--color-brand-50);
+  color: var(--color-brand-800);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-brand-400);
+  font-style: italic;
+  font-size: var(--font-size-base);
+}

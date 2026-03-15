@@ -14,9 +14,13 @@
     "prisma:generate": "npm run prisma:generate --workspace=@sala-funcionando/database",
     "prisma:migrate": "npm run prisma:migrate --workspace=@sala-funcionando/database",
     "prisma:push": "npm run prisma:push --workspace=@sala-funcionando/database",
-    "prisma:studio": "npm run prisma:studio --workspace=@sala-funcionando/database"
+    "prisma:studio": "npm run prisma:studio --workspace=@sala-funcionando/database",
+    "db:seed": "npx tsx packages/database/scripts/populate.ts"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.2.1"
   }
 }
