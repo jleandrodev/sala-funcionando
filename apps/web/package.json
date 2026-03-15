@@ -13,6 +13,7 @@
     "@sala-funcionando/application": "*",
     "@sala-funcionando/database": "*",
     "@sala-funcionando/domain": "*",
+    "@sala-funcionando/infrastructure": "*",
     "@sala-funcionando/shared": "*",
     "@sala-funcionando/ui": "*",
     "@supabase/ssr": "^0.9.0",
