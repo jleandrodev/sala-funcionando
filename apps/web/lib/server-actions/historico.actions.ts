@@ -38,3 +38,25 @@ export async function getHistoricoPorTurmaAction(turmaId: string) {
     return []
   }
 }
+
+export async function getHistoricoComCondicaoAction(turmaId: string) {
+  try {
+    const { prisma } = await import('@sala-funcionando/database/client')
+    const historico = await prisma.historicoAtendimento.findMany({
+      where: { turmaId },
+      include: { protocolo: { select: { condicao: true, subSituacao: true } } },
+      orderBy: { data: 'desc' },
+    })
+    return historico.map(h => ({
+      id: h.id,
+      condicao: h.protocolo?.condicao ?? 'OUTRO',
+      subSituacao: h.protocolo?.subSituacao ?? '',
+      etapaAlcancada: h.etapaAlcancada,
+      helpAcionado: h.helpAcionado,
+      data: h.data,
+    }))
+  } catch (error) {
+    console.error('Error fetching history with condition:', error)
+    return []
+  }
+}

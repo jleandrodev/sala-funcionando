@@ -12,89 +12,104 @@ export default async function HistoricoPage(props: {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user) {
-    return redirect('/login')
-  }
+  if (!user) return redirect('/login')
 
   const turmas = await getTurmasAction(user.id)
   const selectedTurmaId = searchParams.turmaId || (turmas.length > 0 ? turmas[0].id : null)
-  
-  const history = selectedTurmaId 
-    ? await getHistoricoPorTurmaAction(selectedTurmaId)
-    : []
+  const history = selectedTurmaId ? await getHistoricoPorTurmaAction(selectedTurmaId) : []
 
   return (
-    <main className="p-6 sm:p-12">
-      <div className="max-w-5xl mx-auto space-y-12">
-        <header>
-          <h1 className="text-4xl font-bold text-slate-900 shadow-none border-none!">Histórico de Atendimentos</h1>
-          <p className="text-slate-500">Acompanhe os protocolos aplicados e a evolução de cada turma.</p>
-        </header>
+    <div style={{ backgroundColor: '#F0F2F5' }} className="min-h-full px-4 py-6 lg:px-8 lg:py-8">
 
-        <section className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm space-y-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-100 pb-6">
-            <div className="w-full sm:w-auto">
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Filtrar por Turma</label>
-              <div className="flex gap-2">
-                {turmas.map((turma) => (
-                  <Link 
-                    key={turma.id} 
-                    href={`/historico?turmaId=${turma.id}`}
-                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
-                      selectedTurmaId === turma.id 
-                        ? 'bg-brand-600 text-white shadow-lg shadow-brand-100' 
-                        : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
-                    }`}
-                  >
-                    {turma.nome}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {!selectedTurmaId ? (
-            <div className="text-center py-12">
-              <p className="text-slate-400">Nenhuma turma selecionada ou cadastrada.</p>
-            </div>
-          ) : history.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-slate-400 italic">Nenhum atendimento registrado para esta turma ainda.</p>
-              <Link href="/dashboard">
-                <Button variant="ghost" className="mt-4">Começar atendimento</Button>
-              </Link>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {history.map((item: any) => (
-                <div key={item.id} className="flex items-center justify-between p-6 rounded-2xl border border-slate-100 hover:border-brand-200 transition-all">
-                  <div className="flex items-center gap-6">
-                    <div className="h-12 w-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl">
-                       {item.helpAcionado ? '🚨' : '✅'}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-900">Protocolo TEA / Crise</h3>
-                      <p className="text-sm text-slate-500">
-                        {new Date(item.data).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Status</p>
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      item.helpAcionado 
-                        ? 'bg-danger-50 text-danger-700' 
-                        : 'bg-success-50 text-success-700'
-                    }`}>
-                      {item.helpAcionado ? 'Socorro Acionado' : 'Concluído'}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
+      {/* Header banner */}
+      <div
+        className="relative rounded-2xl px-6 py-6 mb-6 overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #1E1F3B 0%, #3730A3 100%)' }}
+      >
+        <div className="relative z-10">
+          <p className="text-indigo-200 text-xs font-bold uppercase tracking-widest mb-1">Registros</p>
+          <h1 className="text-white text-xl font-bold mb-1">Histórico de Atendimentos</h1>
+          <p className="text-indigo-300 text-sm">Acompanhe os protocolos aplicados e a evolução de cada turma.</p>
+        </div>
+        <div className="absolute -right-6 -top-6 w-32 h-32 rounded-full opacity-10 bg-indigo-400" />
+        <div className="absolute -right-2 bottom-0 w-20 h-20 rounded-full opacity-10 bg-indigo-200" />
       </div>
-    </main>
+
+      {/* Turma filter */}
+      {turmas.length > 0 && (
+        <div className="mb-5">
+          <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-3">Filtrar por Turma</p>
+          <div className="flex flex-wrap gap-2">
+            {turmas.map((turma) => (
+              <Link
+                key={turma.id}
+                href={`/historico?turmaId=${turma.id}`}
+                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+                  selectedTurmaId === turma.id
+                    ? 'bg-indigo-600 text-white shadow-md'
+                    : 'bg-white text-neutral-600 border border-neutral-200 hover:border-indigo-300 hover:text-indigo-700'
+                }`}
+              >
+                {turma.nome}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* History list */}
+      {!selectedTurmaId ? (
+        <div className="bg-white rounded-2xl p-12 text-center border border-neutral-100 shadow-sm">
+          <p className="text-neutral-400">Nenhuma turma selecionada ou cadastrada.</p>
+        </div>
+      ) : history.length === 0 ? (
+        <div className="bg-white rounded-2xl p-12 text-center border border-neutral-100 shadow-sm space-y-4">
+          <p className="text-neutral-400 italic">Nenhum atendimento registrado para esta turma ainda.</p>
+          <Link href="/dashboard">
+            <Button variant="ghost">Começar atendimento</Button>
+          </Link>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {history.map((item: any) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-2xl px-5 py-4 border border-neutral-100 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all flex items-center gap-4"
+            >
+              {/* Icon */}
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                style={{ backgroundColor: item.helpAcionado ? '#FEE2E2' : '#DCFCE7' }}
+              >
+                {item.helpAcionado ? '🚨' : '✅'}
+              </div>
+
+              {/* Info */}
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-neutral-900 text-sm">Protocolo TEA / Crise</p>
+                <p className="text-xs text-neutral-400 mt-0.5">
+                  {new Date(item.data).toLocaleDateString('pt-BR', {
+                    day: '2-digit', month: 'long', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit',
+                  })}
+                </p>
+              </div>
+
+              {/* Badge */}
+              <span
+                className={`text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0 ${
+                  item.helpAcionado
+                    ? 'bg-red-50 text-red-600'
+                    : 'bg-green-50 text-green-700'
+                }`}
+              >
+                {item.helpAcionado ? 'Socorro Acionado' : 'Concluído'}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+    </div>
   )
 }

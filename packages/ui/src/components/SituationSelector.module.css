@@ -62,3 +62,87 @@
 .selected .arrow {
   color: var(--color-brand-500);
 }
+
+/* Rect-grid variant (2-col colored cards) */
+.rectGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .rectGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rectGrid > .rectItem:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.rectItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: 100px;
+  width: 100%;
+  text-align: left;
+  background-color: var(--color-neutral-100, #F3F4F6);
+  color: var(--color-neutral-900, #111827);
+}
+
+.rectItem:hover {
+  filter: brightness(0.93);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.rectItemSelected {
+  outline: 3px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.rectIcon {
+  font-size: 2.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.rectContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.rectLabel {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.rectDescription {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+.rectArrow {
+  font-size: 1.3rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  opacity: 0.6;
+}

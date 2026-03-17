@@ -1,6 +1,10 @@
 export enum TipoCondicao {
   TEA = 'TEA',
-  DOWN = 'DOWN',
+  DISLEXIA = 'DISLEXIA',
   AHSD = 'AHSD',
-  OUTRO = 'OUTRO'
+  TDAH = 'TDAH',
+  DI_LEVE = 'DI_LEVE',
+  // legado
+  DOWN = 'DOWN',
+  OUTRO = 'OUTRO',
 }
