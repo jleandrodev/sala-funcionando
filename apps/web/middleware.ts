@@ -56,11 +56,6 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Se o usuário estiver logado e tentar acessar a landing page, redireciona para o dashboard
-  if (user && request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
-
   // Se o usuário não estiver logado e tentar acessar uma rota protegida
   const isAuthPage = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/register')
   const isLandingPage = request.nextUrl.pathname === '/'
