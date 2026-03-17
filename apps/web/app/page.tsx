@@ -57,15 +57,11 @@ export default function LandingPage() {
               </a>
             ))}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
             <Link href="/login"
-              className="text-white/70 hover:text-white text-sm font-semibold transition-colors px-3 py-1.5">
-              Entrar
-            </Link>
-            <Link href="/register"
               className="text-sm font-bold px-4 py-2 rounded-xl transition-all hover:opacity-90"
               style={{ backgroundColor: '#4F46E5', color: '#ffffff' }}>
-              Começar grátis
+              Entrar
             </Link>
           </div>
         </div>
@@ -106,15 +102,10 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-16 w-full justify-center">
-            <Link href="/register"
+            <Link href="/login"
               className="font-bold px-8 py-4 rounded-2xl text-base transition-all hover:opacity-90 hover:shadow-2xl shadow-indigo-900/40 shadow-lg"
               style={{ backgroundColor: '#4F46E5', color: '#ffffff', minWidth: 220 }}>
-              Criar minha conta — é grátis
-            </Link>
-            <Link href="/login"
-              className="font-semibold px-8 py-4 rounded-2xl text-base border transition-colors"
-              style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.75)', backgroundColor: 'rgba(255,255,255,0.05)', minWidth: 180 }}>
-              Já tenho conta →
+              Acessar plataforma →
             </Link>
           </div>
 
@@ -137,9 +128,12 @@ export default function LandingPage() {
 
         </div>
 
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, #FAFAF8)' }} />
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none leading-none">
+          <svg viewBox="0 0 1440 96" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 96 }}>
+            <path d="M0,32 C240,80 480,0 720,48 C960,96 1200,16 1440,56 L1440,96 L0,96 Z" fill="#FAFAF8" />
+          </svg>
+        </div>
       </section>
 
       {/* ══ STATS BAR ══ */}
@@ -278,16 +272,13 @@ export default function LandingPage() {
             Pronto para transformar<br />sua sala de aula?
           </h2>
           <p className="text-lg mb-10" style={{ color: 'rgba(255,255,255,0.6)' }}>
-            Crie sua conta gratuita agora. Sem cartão de crédito, sem complicação.
+            Entre na plataforma e comece a apoiar seus alunos agora.
           </p>
-          <Link href="/register"
+          <Link href="/login"
             className="inline-block font-bold px-10 py-4 rounded-2xl text-base transition-all hover:opacity-90 shadow-xl shadow-indigo-900/40"
             style={{ backgroundColor: '#4F46E5', color: '#ffffff' }}>
-            Criar minha conta — é grátis
+            Acessar plataforma →
           </Link>
-          <p className="mt-5 text-sm" style={{ color: 'rgba(255,255,255,0.35)' }}>
-            Já tem conta? <Link href="/login" className="underline hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>Entrar</Link>
-          </p>
         </div>
       </section>
 
@@ -303,7 +294,7 @@ export default function LandingPage() {
           </p>
           <div className="flex gap-5">
             <Link href="/login"    className="text-xs font-medium hover:text-neutral-900 transition-colors" style={{ color: '#94A3B8' }}>Entrar</Link>
-            <Link href="/register" className="text-xs font-medium hover:text-neutral-900 transition-colors" style={{ color: '#94A3B8' }}>Criar conta</Link>
+            <Link href="/login" className="text-xs font-medium hover:text-neutral-900 transition-colors" style={{ color: '#94A3B8' }}>Acessar</Link>
           </div>
         </div>
       </footer>
